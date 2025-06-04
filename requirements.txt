@@ -1,18 +1,9 @@
-services:
-  - type: web
-    name: ufo-news-desk
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
-    envVars:
-      - key: FLASK_ENV
-        value: production
-      - key: SECRET_KEY
-        generateValue: true
-      - fromDatabase:
-          name: ufo-db
-          property: connectionString
-        key: DATABASE_URL
-
-databases:
-  - name: ufo-db
+Flask
+Flask-SQLAlchemy
+Flask-JWT-Extended
+psycopg2-binary
+gunicorn
+requests
+beautifulsoup4
+lxml
+python-dotenv
