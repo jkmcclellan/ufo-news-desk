@@ -25,3 +25,5 @@ app.register_blueprint(article_create_bp)
 @app.route("/")
 def index():
     return {"status": "UFO News Desk is live"}
+
+__all__ = ["app"]
