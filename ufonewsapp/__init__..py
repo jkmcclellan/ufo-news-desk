@@ -30,6 +30,19 @@ jwt = JWTManager(app)
 # Register blueprints
 app.register_blueprint(article_create_bp)
 
+from flask import request
+from ufonewsapp.models import db
+
+@app.route("/init-db", methods=["POST"])
+def init_db():
+    # Basic protection — replace 'YOUR_SECRET_KEY' with something only you know
+    if request.headers.get("X-Admin-Secret") != "YOUR_SECRET_KEY":
+        return {"error": "Unauthorized"}, 401
+
+    db.create_all()
+    return {"status": "Database initialized successfully"}
+
+
 # Root endpoint for health check
 @app.route("/")
 def index():
