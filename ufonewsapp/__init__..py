@@ -3,11 +3,11 @@
 
 from flask import Flask
 from flask_jwt_extended import JWTManager
-from flask_cors import CORS  # Optional: for testing from web clients
-from ufonewsapp.models import db, article_create_bp
+from flask_cors import CORS
+from .models import db
 
 app = Flask(__name__)
-CORS(app)  # <- Helps avoid CORS errors in browser-based clients
+CORS(app)  # <-- This enables CORS for all routes
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///temp.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
