@@ -7,7 +7,8 @@ from flask_cors import CORS
 from .models import db
 
 app = Flask(__name__)
-CORS(app)  # <-- This enables CORS for all routes
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+  # <-- This enables CORS for all routes
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///temp.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
