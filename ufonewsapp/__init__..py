@@ -18,7 +18,7 @@ db.init_app(app)
 jwt = JWTManager(app)
 
 # Register blueprints
-from .models import article_create_bp
+from ufonewsapp.models import db, article_create_bp
 app.register_blueprint(article_create_bp)
 
 # Root endpoint for health check
