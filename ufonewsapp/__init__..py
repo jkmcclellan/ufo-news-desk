@@ -1,28 +1,24 @@
-# app/__init__.py
+# ufonewsapp/__init__.py
 # © 2025 Rogue Planet. All rights reserved.
 
 from flask import Flask
 from flask_jwt_extended import JWTManager
-from .models import db
+from flask_cors import CORS  # Optional: for testing from web clients
+from ufonewsapp.models import db, article_create_bp
 
-# Create the Flask app
 app = Flask(__name__)
+CORS(app)  # <- Helps avoid CORS errors in browser-based clients
 
-# Basic config (can be customized or loaded from environment)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///temp.db"  # Overwritten by Render
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///temp.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["JWT_SECRET_KEY"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc0OTE0MDA4NX0.hemrwor5Vfz1LUAGMvVQ9JW5NzpmQE7XigkP_bCvYDo
-"  # Should be set via env var in production
+app.config["JWT_SECRET_KEY"] = "super-secret"
 
-# Initialize extensions
 db.init_app(app)
 jwt = JWTManager(app)
 
-# Register blueprints
-from ufonewsapp.models import db, article_create_bp
+# Register your blueprint
 app.register_blueprint(article_create_bp)
 
-# Root endpoint for health check
 @app.route("/")
 def index():
     return {"status": "UFO News Desk is live"}
