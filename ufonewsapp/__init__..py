@@ -11,7 +11,8 @@ app = Flask(__name__)
 # Basic config (can be customized or loaded from environment)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///temp.db"  # Overwritten by Render
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["JWT_SECRET_KEY"] = "super-secret"  # Should be set via env var in production
+app.config["JWT_SECRET_KEY"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTc0OTE0MDA4NX0.hemrwor5Vfz1LUAGMvVQ9JW5NzpmQE7XigkP_bCvYDo
+"  # Should be set via env var in production
 
 # Initialize extensions
 db.init_app(app)
